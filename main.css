@@ -51,9 +51,10 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  height: 50px;
 }
 
-.logo-badge {
+.logo-shape {
   width: 45px;
   height: 45px;
   background: linear-gradient(135deg, #0071e3 0%, #00c6ff 100%);
@@ -61,15 +62,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: white;
+  position: relative;
   box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.logo-badge:hover {
-  transform: translateY(-3px);
+.logo-shape::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.shape-inner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+  animation: rotate 3s linear infinite;
+}
+
+.logo-shape:hover {
+  transform: translateY(-3px) scale(1.05);
   box-shadow: 0 6px 20px rgba(0, 113, 227, 0.4);
 }
 
@@ -78,6 +97,11 @@ body {
   font-weight: 700;
   color: var(--space-black);
   letter-spacing: -0.01em;
+  transition: all 0.3s ease;
+}
+
+.logo:hover .logo-text {
+  color: var(--accent-blue);
 }
 
 #nav-bar {
@@ -181,6 +205,16 @@ body {
     transform: translateY(0);
   }
 }
+
+@keyframes rotate {
+  from {
+    transform: rotate(45deg);
+  }
+  to {
+    transform: rotate(405deg);
+  }
+}
+
 
 #form {
   display: flex;
